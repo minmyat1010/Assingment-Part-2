@@ -1,0 +1,514 @@
+/* =========================
+   G07 Health Department CSS
+   Basic, clean, and modern
+   ========================= */
+
+/* Reset / base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  color: #173128;
+  background: #f5fbf7;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: #0c7a52;
+}
+
+a:hover,
+a:focus {
+  color: #09573b;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.section-soft {
+  background: #eaf7f0;
+  padding: 3rem 0;
+}
+
+.section-title,
+.page-header {
+  text-align: center;
+}
+
+.eyebrow {
+  color: #0c7a52;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+/* Accessibility */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #ffffff;
+  color: #000000;
+  padding: 0.75rem 1rem;
+  z-index: 999;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* Header / navigation */
+
+.brand {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.nav-menu a {
+  text-decoration: none;
+}
+
+
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid #d7eadf;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.nav-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.brand-tagline {
+  margin: 0;
+  color: #527267;
+  font-size: 0.95rem;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  color: #173128;
+  font-weight: bold;
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus,
+.nav-menu a[aria-current="page"] {
+  background: #dff3e7;
+  color: #0c7a52;
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  background: #0c7a52;
+  color: #ffffff;
+  text-decoration: none;
+  border: 2px solid #0c7a52;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  background: #09573b;
+  border-color: #09573b;
+  color: #ffffff;
+}
+
+.button-secondary {
+  background: transparent;
+  color: #0c7a52;
+}
+
+/* Hero / slideshow */
+.hero {
+  padding: 1.5rem 0 2rem;
+}
+
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  min-height: 520px;
+  background: #dff3e7;
+  box-shadow: 0 20px 40px rgba(17, 59, 42, 0.08);
+}
+
+.slides-track {
+  display: flex;
+  width: 300%;
+  height: 520px;
+  animation: slideShow 15s infinite;
+}
+
+.slide {
+  width: 100%;
+  min-height: 520px;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide-one {
+  background-image:
+    linear-gradient(rgba(6, 52, 35, 0.35), rgba(6, 52, 35, 0.35)),
+    url('https://www.stevenson.edu/wp-content/uploads/iStock-471449282_996x554.jpg') 
+}
+
+.slide-two {
+  background-image:
+    linear-gradient(rgba(6, 52, 35, 0.35), rgba(6, 52, 35, 0.35)),
+    url('https://dam.northwell.edu/m/7c26de5052c32b5d/Drupal-web_KIWH_AdobeStock_503731162.jpg') 
+}
+
+.slide-three {
+  background-image:
+    linear-gradient(rgba(6, 52, 35, 0.35), rgba(6, 52, 35, 0.35)),
+    url('https://www.shutterstock.com/shutterstock/videos/3594243857/thumb/1.jpg?ip=x480')
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  color: #ffffff;
+  max-width: 700px;
+}
+
+.hero-overlay h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+@keyframes slideShow {
+  0%, 28% {
+    transform: translateX(0);
+  }
+  33%, 61% {
+    transform: translateX(-33.3333%);
+  }
+  66%, 94% {
+    transform: translateX(-66.6666%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Cards and grids */
+.two-column,
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.grid-three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card,
+.job-card,
+.application-form,
+.fun-table {
+  background: #ffffff;
+  border: 1px solid #d7eadf;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(17, 59, 42, 0.06);
+}
+
+.card,
+.job-card,
+.application-form {
+  padding: 1.5rem;
+}
+
+.feature-list {
+  padding-left: 1.25rem;
+}
+
+/* Jobs page */
+.job-aside {
+  float: right;
+  width: 25%;
+  border: 2px solid #b7dfc7;
+  margin: 0 0 1.5rem 1.5rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: #f4fbf7;
+}
+
+.job-listing {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.job-meta {
+  margin: 0.25rem 0;
+  color: #527267;
+}
+
+/* Apply form */
+.application-form {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.25rem;
+}
+
+.full-width,
+fieldset {
+  grid-column: 1 / -1;
+}
+
+label,
+legend {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  resize: none;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #b7dfc7;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+fieldset {
+  border: 1px solid #b7dfc7;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+fieldset label {
+  display: inline-block;
+  margin-right: 1rem;
+  font-weight: normal;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+/* About page */
+.team-figure {
+  margin: 0;
+  text-align: center;
+}
+
+.team-photo {
+  min-height: 280px;
+  border: 3px solid #0c7a52;
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(12, 122, 82, 0.8), rgba(95, 207, 147, 0.8)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1) 12px,
+      rgba(255, 255, 255, 0.02) 12px,
+      rgba(255, 255, 255, 0.02) 24px
+    );
+}
+
+.fun-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.fun-table caption {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding-top: 0.5rem;
+}
+
+.fun-table th,
+.fun-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #d7eadf;
+  text-align: left;
+}
+
+.fun-table th {
+  background: #0c7a52;
+  color: #ffffff;
+}
+
+.fun-table tbody tr:hover {
+  background: #edf8f1;
+}
+
+/* Footer */
+.site-footer {
+  background: #16382c;
+  color: #e9fff4;
+  padding: 30px 0;
+
+  width: 100%;
+}
+
+.footer-grid {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.site-footer a {
+  color: #aaf0c8;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.site-footer h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .nav-wrap,
+  .two-column,
+  .about-layout,
+  .grid-three,
+  .footer-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-wrap {
+    display: block;
+  }
+
+  .nav-menu {
+    margin-top: 1rem;
+  }
+
+  .job-aside {
+    float: none;
+    width: 100%;
+    margin: 0 0 1.5rem;
+  }
+
+  .hero-slider,
+  .slides-track,
+  .slide {
+    min-height: 440px;
+    height: 440px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-overlay {
+    padding: 1.5rem;
+  }
+
+  .hero-actions,
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .button {
+    text-align: center;
+  }
+}
