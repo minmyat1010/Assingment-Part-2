@@ -1,40 +1,13 @@
-<!doctype html>
-<html lang="en">
+<?php
+$title = "G07 Health Department | Apply";
+$description = "Apply for jobs at G07 Health Department.";
+$page = "apply";
+$footer_heading = "Notice";
+$footer_text = "Review job reference number before submitting.";
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Apply for jobs at G07 Health Department." />
-  <title>G07 Health Department | Apply</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-
-<body>
-
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-    
-    <header class="site-header">
-      <div class="container nav-wrap">
-        <a href="index.html" class="brand">
-          <div class="brand-icon" aria-hidden="true"><img src="./LOGO.png" alt="G07 Health Department Logo"></div>
-          <div>
-            <h1 class="brand-name">G07 Health Department</h1>
-            <p class="brand-tagline">Forensic Science & Research Careers</p>
-          </div>
-        </a>
-
-      <nav aria-label="Main navigation">
-        <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="jobs.html">Jobs</a></li>
-          <li><a href="apply.html" aria-current="page">Apply</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-      </nav>
-
-    </div>
-  </header>
-
+include("../include/header.inc");
+include("../include/nav.inc");
+?>
   <!-- MAIN CONTENT -->
   <main id="main-content" class="container section">
 
@@ -153,28 +126,4 @@
 
   </main>
 
-  <!-- FOOTER (FIXED POSITION) -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-
-      <div>
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:info@G07HealthDep.com">info@G07HealthDep.com</a></p>
-      </div>
-
-      <div>
-        <h2>Project Links</h2>
-        <p><a href="https://chanmyaeoo.atlassian.net/jira/software/projects/GHRW/summary?atlOrigin=eyJpIjoiMjRjMmI4YTZhYjc0NGNiNmJlZmMxMjY5ZmQ1MmZiNDAiLCJwIjoiaiJ9" target="_blank">Jira Project</a></p>
-        <p><a href="https://github.com/ChanMyae00/G07-Health-Recruitment-Web.git" target="_blank">GitHub Repository</a></p>
-      </div>
-
-      <div>
-        <h2>Notice</h2>
-        <p>Review job reference number before submitting.</p>
-      </div>
-
-    </div>
-  </footer>
-
-</body>
-</html>
+<?php include("../include/footer.inc"); ?>
