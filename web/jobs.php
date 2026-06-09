@@ -5,8 +5,8 @@ $page = "jobs";
 $footer_heading = "Apply Today";
 $footer_text = '<a href="apply.php">Go to application form</a>';
 
-include("header.inc");
-include("nav.inc");
+include("../include/header.inc");
+include("../include/nav.inc");
 ?>
 
   <main id="main-content" class="container section">
@@ -110,4 +110,4 @@ include("nav.inc");
       </article>
     </section>
   </main>
-<?php include("footer.inc"); ?>
+<?php include("../include/footer.inc"); ?>

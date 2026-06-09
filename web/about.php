@@ -5,8 +5,8 @@ $page = "about";
 $footer_heading = "Team Note";
 $footer_text = "G07 first website project";
 
-include("header.inc");
-include("nav.inc");
+include("../include/header.inc");
+include("../include/nav.inc");
 ?>
 
   <main id="main-content" class="container section">
@@ -86,7 +86,7 @@ include("nav.inc");
 
       <article class="card">
         <figure class="team-figure">
-          <img src="group-photo.jpg" alt="Group photo of The Creative Coders" class="team-photo">
+          <img src="../images/group-photo.jpg" alt="Group photo of The Creative Coders" class="team-photo">
           <figcaption>Group photo of The Creative Coders.</figcaption>
         </figure>
       </article>
@@ -135,4 +135,4 @@ include("nav.inc");
     </section>
   </main>
 
-<?php include("footer.inc"); ?>
+<?php include("../include/footer.inc"); ?>

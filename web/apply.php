@@ -5,8 +5,8 @@ $page = "apply";
 $footer_heading = "Notice";
 $footer_text = "Review job reference number before submitting.";
 
-include("header.inc");
-include("nav.inc");
+include("../include/header.inc");
+include("../include/nav.inc");
 ?>
   <!-- MAIN CONTENT -->
   <main id="main-content" class="container section">
@@ -126,4 +126,4 @@ include("nav.inc");
 
   </main>
 
-<?php include("footer.inc"); ?>
+<?php include("../include/footer.inc"); ?>
