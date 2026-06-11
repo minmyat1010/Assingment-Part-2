@@ -5,8 +5,8 @@ $page = "home";
 $footer_heading = "Credits";
 $footer_text = "WHO, Health Gov AU, CDC, Forensic Regulator UK, ChatGPT";
 
-include("../include/header.inc");
-include("../include/nav.inc");
+include(__DIR__ . "/../include/header.inc");
+include(__DIR__ . "/../include/nav.inc");
 ?>
 
   <main id="main-content">
@@ -79,5 +79,5 @@ include("../include/nav.inc");
     </section>
   </main>
 
-  <?php include("../include/footer.inc"); ?>
+  <?php include(__DIR__ . "/../include/footer.inc"); ?>
 

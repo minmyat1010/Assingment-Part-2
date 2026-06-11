@@ -5,8 +5,8 @@ $page = "about";
 $footer_heading = "Team Note";
 $footer_text = "G07 first website project";
 
-include("../include/header.inc");
-include("../include/nav.inc");
+include(__DIR__ . "/../include/header.inc");
+include(__DIR__ . "/../include/nav.inc");
 ?>
 
   <main id="main-content" class="container section">
@@ -135,4 +135,4 @@ include("../include/nav.inc");
     </section>
   </main>
 
-<?php include("../include/footer.inc"); ?>
+<?php include(__DIR__ . "/../include/footer.inc"); ?>
