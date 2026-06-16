@@ -25,8 +25,8 @@ include(__DIR__ . "/../include/nav.inc");
             laboratory analysis, and evidence-based investigation.
           </p>
           <div class="hero-actions">
-            <a class="button" href="jobs.html">View Positions</a>
-            <a class="button button-secondary" href="apply.html">Apply Now</a>
+            <a class="button" href="jobs.php">View Positions</a>
+            <a class="button button-secondary" href="apply.php">Apply Now</a>
           </div>
         </div>
       </div>
