@@ -3,7 +3,12 @@
 require_once("./../include/settings.php");
 
 /* Block direct URL access */
-if ($_SERVER["REQUEST_METHOD"] != "POST") {
+if (
+    $_SERVER["REQUEST_METHOD"] != "POST" ||
+    !isset($_POST["jobref"]) ||
+    !isset($_POST["firstname"]) ||
+    !isset($_POST["lastname"])
+) {
     header("Location: apply.php");
     exit();
 }
@@ -29,6 +34,7 @@ $state = sanitise_input($_POST["state"] ?? "");
 $postcode = sanitise_input($_POST["postcode"] ?? "");
 $email = sanitise_input($_POST["email"] ?? "");
 $phone = sanitise_input($_POST["phone"] ?? "");
+$position = sanitise_input($_POST["position"] ?? "");
 $otherskills = sanitise_input($_POST["otherskills"] ?? "");
 
 $skills = "";
@@ -75,17 +81,18 @@ if (!preg_match("/^[0-9]{4}$/", $postcode)) {
     $errors[] = "Invalid Postcode";
 }
 
-/* Required fields */
+/* Required Fields */
 if (
     empty($gender) ||
     empty($street) ||
     empty($suburb) ||
-    empty($state)
+    empty($state) ||
+    empty($position)
 ) {
     $errors[] = "All required fields must be completed";
 }
 
-/* Show errors */
+/* Show Validation Errors */
 if (!empty($errors)) {
 
     echo "<h2>Validation Errors</h2>";
@@ -109,7 +116,7 @@ if (count($dateParts) == 3) {
 $host = "localhost";
 $user = "root";
 $password = "";
-$database = "healthdepartment";
+$database = "HealthDepartment";
 
 $conn = mysqli_connect($host, $user, $password, $database);
 
@@ -117,7 +124,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-/* SQL Query */
+/* Insert Record */
 $sql = "INSERT INTO eoi
 (
     job_reference,
@@ -131,6 +138,7 @@ $sql = "INSERT INTO eoi
     postcode,
     email,
     phone,
+    position,
     skills,
     other_skills
 )
@@ -147,6 +155,7 @@ VALUES
     '$postcode',
     '$email',
     '$phone',
+    '$position',
     '$skills',
     '$otherskills'
 )";
