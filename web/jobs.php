@@ -9,105 +9,116 @@ include(__DIR__ . "/../include/header.inc");
 include(__DIR__ . "/../include/nav.inc");
 ?>
 
-  <main id="main-content" class="container section">
-    <header class="page-header">
-      <p class="eyebrow">Career Opportunities</p>
-      <h2>Available Positions</h2>
-      <p>Explore current openings for forensic and research specialists.</p>
-    </header>
+<main id="main-content" class="container section">
+  <header class="page-header">
+    <p class="eyebrow">Career Opportunities</p>
+    <h2>Available Positions</h2>
+    <p>Explore current openings for forensic and research specialists.</p>
+  </header>
 
-    <aside class="job-aside">
-      <h2>Application Tips</h2>
-      <p>Check the reference number carefully before applying.</p>
-      <ul>
-        <li>Use a valid email address</li>
-        <li>Match your skills to the role</li>
-        <li>Submit accurate personal details</li>
-      </ul>
-    </aside>
+  <aside class="job-aside">
+    <h2>Application Tips</h2>
+    <p>Check the reference number carefully before applying.</p>
+    <ul>
+      <li>Use a valid email address</li>
+      <li>Match your skills to the role</li>
+      <li>Submit accurate personal details</li>
+    </ul>
+  </aside>
 
-    <section class="job-listing">
-      <article class="job-card">
-        <header>
-          <h2>Forensic Research Officer</h2>
-          <p class="job-ref">Reference: FR701</p>
-          <p class="job-meta">Salary: AUD 78,000 - 92,000 per year</p>
-          <p class="job-meta">Reports to: Senior Forensic Program Manager</p>
-        </header>
+  <section class="job-listing">
+    <article class="job-card">
+      <header>
+        <h2>Forensic Research Officer</h2>
+        <p class="job-ref">Reference: FR701</p>
+        <p class="job-meta">Salary: AUD 78,000 - 92,000 per year</p>
+        <p class="job-meta">Reports to: Senior Forensic Program Manager</p>
+      </header>
 
-        <section>
-          <h3>Short Description</h3>
-          <p>
-            This role supports forensic analysis projects, case-related research,
-            and the preparation of clear scientific reports for internal teams.
-          </p>
-        </section>
+      <section>
+        <h3>Short Description</h3>
+        <p>
+          This role supports forensic analysis projects, case-related research,
+          and the preparation of clear scientific reports for internal teams.
+        </p>
+      </section>
 
-        <section>
-          <h3>Key Responsibilities</h3>
-          <ol>
-            <li>Assist in forensic data collection and laboratory documentation.</li>
-            <li>Prepare evidence-based reports for supervisors and partner teams.</li>
-            <li>Maintain accurate records and follow health and safety procedures.</li>
-          </ol>
-        </section>
+      <section>
+        <h3>Key Responsibilities</h3>
+        <ol>
+          <li>Assist in forensic data collection and laboratory documentation.</li>
+          <li>Prepare evidence-based reports for supervisors and partner teams.</li>
+          <li>Maintain accurate records and follow health and safety procedures.</li>
+        </ol>
+      </section>
 
-        <section>
-          <h3>Requirements</h3>
-          <h4>Essential</h4>
-          <ul>
-            <li>Degree in forensic science, biomedical science, or related field</li>
-            <li>Strong written communication and attention to detail</li>
-            <li>Ability to work with confidential information</li>
-          </ul>
-          <h4>Preferable</h4>
-          <ul>
-            <li>Experience with laboratory information systems</li>
-            <li>Knowledge of health department procedures</li>
-          </ul>
-        </section>
-      </article>
+      <section>
+        <h3>Requirements</h3>
+        <h4>Essential</h4>
+        <ul>
+          <li>Degree in forensic science, biomedical science, or related field</li>
+          <li>Strong written communication and attention to detail</li>
+          <li>Ability to work with confidential information</li>
+        </ul>
 
-      <article class="job-card">
-        <header>
-          <h2>Public Health Research Analyst</h2>
-          <p class="job-ref">Reference: PR824</p>
-          <p class="job-meta">Salary: AUD 82,000 - 96,000 per year</p>
-          <p class="job-meta">Reports to: Research and Policy Lead</p>
-        </header>
+        <h4>Preferable</h4>
+        <ul>
+          <li>Experience with laboratory information systems</li>
+          <li>Knowledge of health department procedures</li>
+        </ul>
+      </section>
 
-        <section>
-          <h3>Short Description</h3>
-          <p>
-            This role supports public health studies by analysing research data,
-            preparing summaries, and helping teams turn findings into useful recommendations.
-          </p>
-        </section>
+      <a href="apply.php?jobref=FR701" class="button apply-button">
+        Apply Now
+      </a>
+    </article>
 
-        <section>
-          <h3>Key Responsibilities</h3>
-          <ol>
-            <li>Review health datasets and prepare research summaries.</li>
-            <li>Support project planning, reporting, and evidence review.</li>
-            <li>Work with internal teams to improve service outcomes.</li>
-          </ol>
-        </section>
+    <article class="job-card">
+      <header>
+        <h2>Public Health Research Analyst</h2>
+        <p class="job-ref">Reference: PR824</p>
+        <p class="job-meta">Salary: AUD 82,000 - 96,000 per year</p>
+        <p class="job-meta">Reports to: Research and Policy Lead</p>
+      </header>
 
-        <section>
-          <h3>Requirements</h3>
-          <h4>Essential</h4>
-          <ul>
-            <li>Degree in public health, research, statistics, or related field</li>
-            <li>Good analytical thinking and report writing skills</li>
-            <li>Ability to organise information clearly and accurately</li>
-          </ul>
-          <h4>Preferable</h4>
-          <ul>
-            <li>Experience in health research projects</li>
-            <li>Familiarity with spreadsheet or statistical tools</li>
-          </ul>
-        </section>
-      </article>
-    </section>
-  </main>
+      <section>
+        <h3>Short Description</h3>
+        <p>
+          This role supports public health studies by analysing research data,
+          preparing summaries, and helping teams turn findings into useful recommendations.
+        </p>
+      </section>
+
+      <section>
+        <h3>Key Responsibilities</h3>
+        <ol>
+          <li>Review health datasets and prepare research summaries.</li>
+          <li>Support project planning, reporting, and evidence review.</li>
+          <li>Work with internal teams to improve service outcomes.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Requirements</h3>
+        <h4>Essential</h4>
+        <ul>
+          <li>Degree in public health, research, statistics, or related field</li>
+          <li>Good analytical thinking and report writing skills</li>
+          <li>Ability to organise information clearly and accurately</li>
+        </ul>
+
+        <h4>Preferable</h4>
+        <ul>
+          <li>Experience in health research projects</li>
+          <li>Familiarity with spreadsheet or statistical tools</li>
+        </ul>
+      </section>
+
+      <a href="apply.php?jobref=PR824" class="button apply-button">
+        Apply Now
+      </a>
+    </article>
+  </section>
+</main>
+
 <?php include(__DIR__ . "/../include/footer.inc"); ?>
