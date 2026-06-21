@@ -15,7 +15,7 @@ $conn = mysqli_connect($host, $user, $pwd, $sql_db);
 
 if (!$conn)
 {
-    die("Database connection failed.");
+    die("Database connection failed: " . mysqli_connect_error());
 }
 
 /* UPDATE STATUS */
@@ -33,7 +33,7 @@ if (isset($_POST["update_status"]))
     mysqli_query($conn, $sql);
 }
 
-/* DELETE BY JOB REFERENCE */
+/* DELETE EOIs BY JOB REFERENCE */
 if (isset($_POST["delete_eoi"]))
 {
     $ref = mysqli_real_escape_string(
@@ -43,7 +43,7 @@ if (isset($_POST["delete_eoi"]))
 
     $sql = "
         DELETE FROM eoi
-        WHERE ref_number='$ref'
+        WHERE job_reference='$ref'
     ";
 
     mysqli_query($conn, $sql);
@@ -61,7 +61,7 @@ if (!empty($_POST["ref_number"]))
         $_POST["ref_number"]
     );
 
-    $sql .= " AND ref_number='$ref'";
+    $sql .= " AND job_reference='$ref'";
 }
 
 /* Search by First Name */
@@ -72,7 +72,7 @@ if (!empty($_POST["fname"]))
         $_POST["fname"]
     );
 
-    $sql .= " AND fname LIKE '%$fname%'";
+    $sql .= " AND first_name LIKE '%$fname%'";
 }
 
 /* Search by Last Name */
@@ -83,16 +83,16 @@ if (!empty($_POST["lname"]))
         $_POST["lname"]
     );
 
-    $sql .= " AND lname LIKE '%$lname%'";
+    $sql .= " AND last_name LIKE '%$lname%'";
 }
 
-/* Sort */
+/* SORTING */
 
 $allowed_sort = [
     "EOInumber",
-    "ref_number",
-    "fname",
-    "lname",
+    "job_reference",
+    "first_name",
+    "last_name",
     "status"
 ];
 
@@ -114,7 +114,7 @@ include("../include/header.inc");
 include("../include/nav.inc");
 ?>
 
-<main>
+<main class="manage-page">
 
 <h1>Expression of Interest Management</h1>
 
@@ -146,9 +146,9 @@ Welcome,
 
     <select name="sort">
         <option value="EOInumber">EOI Number</option>
-        <option value="ref_number">Job Reference</option>
-        <option value="fname">First Name</option>
-        <option value="lname">Last Name</option>
+        <option value="job_reference">Job Reference</option>
+        <option value="first_name">First Name</option>
+        <option value="last_name">Last Name</option>
         <option value="status">Status</option>
     </select>
 
@@ -160,14 +160,14 @@ Welcome,
 
 <br>
 
-<!-- Delete EOIs -->
+<!-- Delete by Job Reference -->
 
 <form method="post">
 
     <input
         type="text"
         name="delete_ref"
-        placeholder="Reference To Delete"
+        placeholder="Job Reference To Delete"
         required>
 
     <button
@@ -184,7 +184,7 @@ Welcome,
 
 <tr>
     <th>EOI Number</th>
-    <th>Reference</th>
+    <th>Job Reference</th>
     <th>First Name</th>
     <th>Last Name</th>
     <th>Email</th>
@@ -203,11 +203,17 @@ if ($result && mysqli_num_rows($result) > 0)
 <tr>
 
 <td><?php echo $row["EOInumber"]; ?></td>
-<td><?php echo $row["ref_number"]; ?></td>
-<td><?php echo $row["fname"]; ?></td>
-<td><?php echo $row["lname"]; ?></td>
+
+<td><?php echo $row["job_reference"]; ?></td>
+
+<td><?php echo $row["first_name"]; ?></td>
+
+<td><?php echo $row["last_name"]; ?></td>
+
 <td><?php echo $row["email"]; ?></td>
+
 <td><?php echo $row["phone"]; ?></td>
+
 <td><?php echo $row["status"]; ?></td>
 
 <td>
@@ -243,11 +249,13 @@ if ($result && mysqli_num_rows($result) > 0)
 else
 {
 ?>
+
 <tr>
     <td colspan="8">
         No EOIs found.
     </td>
 </tr>
+
 <?php
 }
 ?>
