@@ -8,7 +8,7 @@
       <div>
         <h2>Project Links</h2>
         <p><a href="https://chanmyaeoo.atlassian.net/jira/software/projects/GHRW/summary?atlOrigin=eyJpIjoiMjRjMmI4YTZhYjc0NGNiNmJlZmMxMjY5ZmQ1MmZiNDAiLCJwIjoiaiJ9" target="_blank">Jira Project</a></p>
-        <p><a href="https://github.com/ChanMyae00/G07-Health-Recruitment-Web.git" target="_blank">GitHub Repository</a></p>
+        <p><a href="https://github.com/minmyat1010/Assingment-Part-2.git" target="_blank">GitHub Repository</a></p>
       </div>
 
       <div>

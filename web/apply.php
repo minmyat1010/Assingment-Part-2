@@ -24,10 +24,17 @@ include(__DIR__ . "/../include/nav.inc");
         <div class="form-grid">
 
             <div>
-                <label for="jobref">Job Reference Number</label>
-                <input type="text" id="jobref" name="jobref">
-            </div>
-
+    <label for="jobref">Job Reference Number</label>
+    <select id="jobref" name="jobref" required>
+        <option value="" disabled>Please Select</option>
+        <option value="FRO001" <?php if(isset($_GET['jobref']) && $_GET['jobref']=="FRO001") echo "selected"; ?>>
+            FRO001 - Forensic Research Officer
+        </option>
+        <option value="PHR002" <?php if(isset($_GET['jobref']) && $_GET['jobref']=="PHR002") echo "selected"; ?>>
+            PHR002 - Public Health Research Analyst
+        </option>
+    </select>
+</div>
             <div>
                 <label for="firstname">First Name</label>
                 <input type="text" id="firstname" name="firstname">
@@ -75,7 +82,7 @@ include(__DIR__ . "/../include/nav.inc");
             <div>
                 <label for="state">State</label>
                 <select id="state" name="state">
-                    <option value="">Please Select</option>
+                    <option value="" selected disabled>Please Select</option>
                     <option value="VIC">VIC</option>
                     <option value="NSW">NSW</option>
                     <option value="QLD">QLD</option>
@@ -105,7 +112,7 @@ include(__DIR__ . "/../include/nav.inc");
             <div>
                 <label for="position">Available Position</label>
                 <select id="position" name="position">
-                    <option value="">Please Select</option>
+                    <option value="" selected disabled>Please Select</option>
                     <option value="forensic_analyst">Forensic Research Officer</option>
                     <option value="lab_technician">Public Health Research Analyst</option>
                 </select>
