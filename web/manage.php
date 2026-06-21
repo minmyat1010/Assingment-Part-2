@@ -1,56 +1,60 @@
 <?php
-$page = 'manage';
 session_start();
 
-if(!isset($_SESSION["user_id"]))
+if (!isset($_SESSION["user_id"]))
 {
-    header("Location: manage.php");
+    header("Location: login.php");
     exit();
 }
 
-require_once("settings.php");
+$page = "manage";
 
-$conn = mysqli_connect($host,$user,$pwd,$sql_db);
+require_once("../include/settings.php");
 
-if(!$conn)
+$conn = mysqli_connect($host, $user, $pwd, $sql_db);
+
+if (!$conn)
 {
     die("Database connection failed.");
 }
 
 /* UPDATE STATUS */
-if(isset($_POST["update_status"]))
+if (isset($_POST["update_status"]))
 {
     $eoi = (int)$_POST["eoi"];
-    $status = $_POST["status"];
+    $status = mysqli_real_escape_string($conn, $_POST["status"]);
 
-    mysqli_query(
-        $conn,
-        "UPDATE eoi
-         SET status='$status'
-         WHERE EOInumber=$eoi"
-    );
+    $sql = "
+        UPDATE eoi
+        SET status='$status'
+        WHERE EOInumber=$eoi
+    ";
+
+    mysqli_query($conn, $sql);
 }
 
-/* DELETE BY REFERENCE */
-if(isset($_POST["delete_eoi"]))
+/* DELETE BY JOB REFERENCE */
+if (isset($_POST["delete_eoi"]))
 {
     $ref = mysqli_real_escape_string(
         $conn,
         $_POST["delete_ref"]
     );
 
-    mysqli_query(
-        $conn,
-        "DELETE FROM eoi
-         WHERE ref_number='$ref'"
-    );
+    $sql = "
+        DELETE FROM eoi
+        WHERE ref_number='$ref'
+    ";
+
+    mysqli_query($conn, $sql);
 }
 
-/* BUILD SEARCH QUERY */
+/* SEARCH */
 
 $sql = "SELECT * FROM eoi WHERE 1=1";
 
-if(!empty($_POST["ref_number"]))
+/* Search by Job Reference */
+if (!empty($_POST["ref_number"]))
 {
     $ref = mysqli_real_escape_string(
         $conn,
@@ -60,25 +64,29 @@ if(!empty($_POST["ref_number"]))
     $sql .= " AND ref_number='$ref'";
 }
 
-if(!empty($_POST["fname"]))
+/* Search by First Name */
+if (!empty($_POST["fname"]))
 {
     $fname = mysqli_real_escape_string(
         $conn,
         $_POST["fname"]
     );
 
-    $sql .= " AND fname='$fname'";
+    $sql .= " AND fname LIKE '%$fname%'";
 }
 
-if(!empty($_POST["lname"]))
+/* Search by Last Name */
+if (!empty($_POST["lname"]))
 {
     $lname = mysqli_real_escape_string(
         $conn,
         $_POST["lname"]
     );
 
-    $sql .= " AND lname='$lname'";
+    $sql .= " AND lname LIKE '%$lname%'";
 }
+
+/* Sort */
 
 $allowed_sort = [
     "EOInumber",
@@ -90,128 +98,165 @@ $allowed_sort = [
 
 $sort = "EOInumber";
 
-if(isset($_POST["sort"]) &&
-   in_array($_POST["sort"],$allowed_sort))
+if (
+    isset($_POST["sort"]) &&
+    in_array($_POST["sort"], $allowed_sort)
+)
 {
     $sort = $_POST["sort"];
 }
 
 $sql .= " ORDER BY $sort";
 
-$result = mysqli_query($conn,$sql);
+$result = mysqli_query($conn, $sql);
 
-include("header.inc");
-include("nav.inc");
+include("../include/header.inc");
+include("../include/nav.inc");
 ?>
 
-<main class="manage-page">
+<main>
+
 <h1>Expression of Interest Management</h1>
-<form method="post" class="manage-search">
-<input type="text"
-       name="ref_number"
-       placeholder="Job Reference">
 
-<input type="text"
-       name="fname"
-       placeholder="First Name">
+<p>
+Welcome,
+<strong><?php echo $_SESSION["username"]; ?></strong>
+|
+<a href="logout.php">Logout</a>
+</p>
 
-<input type="text"
-       name="lname"
-       placeholder="Last Name">
+<!-- Search Form -->
 
-<select name="sort">
-    <option value="EOInumber">EOI Number</option>
-    <option value="ref_number">Job Reference</option>
-    <option value="fname">First Name</option>
-    <option value="lname">Last Name</option>
-    <option value="status">Status</option>
-</select>
+<form method="post">
 
-<button type="submit">
-    Search
-</button>
+    <input
+        type="text"
+        name="ref_number"
+        placeholder="Job Reference">
+
+    <input
+        type="text"
+        name="fname"
+        placeholder="First Name">
+
+    <input
+        type="text"
+        name="lname"
+        placeholder="Last Name">
+
+    <select name="sort">
+        <option value="EOInumber">EOI Number</option>
+        <option value="ref_number">Job Reference</option>
+        <option value="fname">First Name</option>
+        <option value="lname">Last Name</option>
+        <option value="status">Status</option>
+    </select>
+
+    <button type="submit">
+        Search
+    </button>
 
 </form>
 
-<form method="post" class="delete-form">
-<input type="text"
-       name="delete_ref"
-       placeholder="Reference To Delete">
+<br>
 
-<button type="submit"
+<!-- Delete EOIs -->
+
+<form method="post">
+
+    <input
+        type="text"
+        name="delete_ref"
+        placeholder="Reference To Delete"
+        required>
+
+    <button
+        type="submit"
         name="delete_eoi">
-    Delete EOIs
-</button>
+        Delete EOIs
+    </button>
 
 </form>
 
-<div class="manage-table-wrapper">
+<br>
 
-<table class="manage-table">
+<table border="1" cellpadding="5">
 
 <tr>
-    <th>EOI</th>
+    <th>EOI Number</th>
     <th>Reference</th>
-    <th>Name</th>
+    <th>First Name</th>
+    <th>Last Name</th>
     <th>Email</th>
     <th>Phone</th>
     <th>Status</th>
-    <th>Update</th>
+    <th>Update Status</th>
 </tr>
 
 <?php
-
-while($row = mysqli_fetch_assoc($result))
+if ($result && mysqli_num_rows($result) > 0)
 {
+    while ($row = mysqli_fetch_assoc($result))
+    {
 ?>
 
 <tr>
 
-<td><?= $row["EOInumber"] ?></td>
-
-<td><?= $row["ref_number"] ?></td>
-
-<td>
-<?= $row["fname"] ?>
-<?= $row["lname"] ?>
-</td>
-
-<td><?= $row["email"] ?></td>
-
-<td><?= $row["phone"] ?></td>
-
-<td><?= $row["status"] ?></td>
+<td><?php echo $row["EOInumber"]; ?></td>
+<td><?php echo $row["ref_number"]; ?></td>
+<td><?php echo $row["fname"]; ?></td>
+<td><?php echo $row["lname"]; ?></td>
+<td><?php echo $row["email"]; ?></td>
+<td><?php echo $row["phone"]; ?></td>
+<td><?php echo $row["status"]; ?></td>
 
 <td>
 
 <form method="post">
 
-<input type="hidden"
-name="eoi"
-value="<?= $row["EOInumber"] ?>">
+<input
+    type="hidden"
+    name="eoi"
+    value="<?php echo $row["EOInumber"]; ?>">
 
 <select name="status">
-
-<option value="New">New</option>
-<option value="Current">Current</option>
-<option value="Final">Final</option>
-
+    <option value="New">New</option>
+    <option value="Current">Current</option>
+    <option value="Final">Final</option>
 </select>
 
-<button type="submit"
-     name="update_status">
-Update </button>
+<button
+    type="submit"
+    name="update_status">
+    Update
+</button>
 
 </form>
+
 </td>
+
 </tr>
 
+<?php
+    }
+}
+else
+{
+?>
+<tr>
+    <td colspan="8">
+        No EOIs found.
+    </td>
+</tr>
 <?php
 }
 ?>
 
 </table>
-</div>
+
 </main>
 
-<?php include("footer.inc"); ?>
+<?php
+include("../include/footer.inc");
+mysqli_close($conn);
+?>
