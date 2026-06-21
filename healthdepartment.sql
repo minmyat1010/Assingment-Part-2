@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2026 at 11:19 AM
+-- Generation Time: Jun 21, 2026 at 12:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,10 +41,10 @@ CREATE TABLE `about_members` (
 --
 
 INSERT INTO `about_members` (`member_id`, `student_name`, `student_number`, `favourite_language`, `project1_contribution`, `project2_contribution`) VALUES
-(1, 'Arkar Min', '106399241', 'Chinese', 'Created about page structure and part of CSS.', 'Created about table, updated about.php, and added settings.php.'),
-(2, 'Dylan Yang Cheng Jun', '106417716', 'English', 'Prepared job descriptions and part of Jira management.', 'Created job table and job PHP pages, managed database queries.'),
+(1, 'Arkar Min', '106399241', 'Chinese', 'Created about page structure and part of CSS.', 'Created about table, updated about.php, and added manage page related tables and files.'),
+(2, 'Dylan Yang Cheng Jun', '106417716', 'English', 'Prepared job descriptions and part of Jira management.', 'Created job table and job.php page.'),
 (3, 'Chan Myae Oo', '106399209', 'Japanese', 'Designed application page, part of Jira management, and final review.', 'Created the EOI table and implemented record validation.'),
-(4, 'Min Myat Thura', '106399267', 'Burmese (Myanmar)', 'Designed home page, accessibility checks, and part of CSS.', 'Converted HTML pages to PHP and implemented header/footer includes.');
+(4, 'Min Myat Thura', '106399267', 'Burmese (Myanmar)', 'Designed home page, accessibility checks, and part of CSS.', 'Converted HTML pages to PHP, modified css and implemented header/footer includes, setting.php.');
 
 -- --------------------------------------------------------
 
@@ -76,8 +76,9 @@ CREATE TABLE `eoi` (
 --
 
 INSERT INTO `eoi` (`EOInumber`, `job_reference`, `first_name`, `last_name`, `dob`, `gender`, `street`, `suburb`, `state`, `postcode`, `email`, `phone`, `skills`, `other_skills`, `status`, `position`) VALUES
-(3, 'G071A', 'Chan', 'Myae', '2006-11-12', 'male', 'Jalan SS15/8 , My Place Apartment, Suban', 'Subang Jaya', 'VIC', '4750', 'alvingrammix7@gmail.com', '01139465715', 'research', 'gay', 'New', 'forensic_analyst'),
-(4, 'FR701', 'Chan', 'Myae', '2006-11-12', 'male', 'Jalan SS15/8 , My Place Apartment, Suban', 'Subang Jaya', 'VIC', '4750', 'alvingrammix7@gmail.com', '01139465715', 'laboratory', 'ff', 'New', 'forensic_analyst');
+(3, 'FR701', 'Chan', 'Myae', '2006-11-12', 'male', 'Jalan SS15/8 , My Place Apartment, Suban', 'Subang Jaya', 'VIC', '4750', 'alvingrammix7@gmail.com', '01139465715', 'research', 'gay', 'New', 'forensic_analyst'),
+(4, 'FR701', 'ARKAR', 'MIN', '2005-05-03', 'male', '43/8, Thiri Mingalar Street,', 'Taunggyi', 'NSW', '0610', 'arkar073105min@gmail.com', '01140658064', 'laboratory', 'jj', 'New', 'forensic_analyst'),
+(5, 'PH824', 'ARKAR', 'MIN', '2005-05-03', 'male', '43/8, Thiri Mingalar Street,', 'Taunggyi', 'NSW', '0610', 'arkar073105min@gmail.com', '01140658064', 'data', 'T', 'New', 'lab_technician');
 
 -- --------------------------------------------------------
 
@@ -129,6 +130,12 @@ INSERT INTO `users` (`user_id`, `username`, `password`) VALUES
 --
 
 --
+-- Indexes for table `about_members`
+--
+ALTER TABLE `about_members`
+  ADD PRIMARY KEY (`member_id`);
+
+--
 -- Indexes for table `eoi`
 --
 ALTER TABLE `eoi`
@@ -152,10 +159,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `about_members`
+--
+ALTER TABLE `about_members`
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `eoi`
 --
 ALTER TABLE `eoi`
-  MODIFY `EOInumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `EOInumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `jobs`
