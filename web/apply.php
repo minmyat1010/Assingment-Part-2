@@ -27,11 +27,11 @@ include(__DIR__ . "/../include/nav.inc");
     <label for="jobref">Job Reference Number</label>
     <select id="jobref" name="jobref" required>
         <option value="" disabled>Please Select</option>
-        <option value="FRO001" <?php if(isset($_GET['jobref']) && $_GET['jobref']=="FRO001") echo "selected"; ?>>
-            FRO001 - Forensic Research Officer
+        <option value="FR701" <?php if(isset($_GET['jobref']) && $_GET['jobref']=="FR701") echo "selected"; ?>>
+            FR701 - Forensic Research Officer
         </option>
-        <option value="PHR002" <?php if(isset($_GET['jobref']) && $_GET['jobref']=="PHR002") echo "selected"; ?>>
-            PHR002 - Public Health Research Analyst
+        <option value="PH824" <?php if(isset($_GET['jobref']) && $_GET['jobref']=="PH824") echo "selected"; ?>>
+            PH824 - Public Health Research Analyst
         </option>
     </select>
 </div>

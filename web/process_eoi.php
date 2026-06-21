@@ -116,7 +116,7 @@ if (count($dateParts) == 3) {
 $host = "localhost";
 $user = "root";
 $password = "";
-$database = "HealthDepartment";
+$database = "healthdepartment";
 
 $conn = mysqli_connect($host, $user, $password, $database);
 
