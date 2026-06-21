@@ -7,6 +7,24 @@ $footer_text = '<a href="apply.php">Go to application form</a>';
 
 include(__DIR__ . "/../include/header.inc");
 include(__DIR__ . "/../include/nav.inc");
+
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "healthdepartment";
+
+$conn = mysqli_connect($host, $user, $password, $dbname);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$query = "SELECT * FROM jobs";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("Query failed: " . mysqli_error($conn));
+}
 ?>
 
   <main id="main-content" class="container section">
@@ -27,28 +45,29 @@ include(__DIR__ . "/../include/nav.inc");
     </aside>
 
     <section class="job-listing">
+
+      <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+
       <article class="job-card">
         <header>
-          <h2>Forensic Research Officer</h2>
-          <p class="job-ref">Reference: FR701</p>
-          <p class="job-meta">Salary: AUD 78,000 - 92,000 per year</p>
-          <p class="job-meta">Reports to: Senior Forensic Program Manager</p>
+          <h2><?php echo $row['title']; ?></h2>
+          <p class="job-ref">Reference: <?php echo $row['reference_no']; ?></p>
+          <p class="job-meta">Salary: <?php echo $row['salary']; ?></p>
+          <p class="job-meta">Reports to: <?php echo $row['reports_to']; ?></p>
         </header>
 
         <section>
           <h3>Short Description</h3>
           <p>
-            This role supports forensic analysis projects, case-related research,
-            and the preparation of clear scientific reports for internal teams.
+            <?php echo $row['short_description']; ?>
           </p>
         </section>
 
         <section>
           <h3>Key Responsibilities</h3>
           <ol>
-            <li>Assist in forensic data collection and laboratory documentation.</li>
-            <li>Prepare evidence-based reports for supervisors and partner teams.</li>
-            <li>Maintain accurate records and follow health and safety procedures.</li>
+            <?php $responsibilities = explode("|", $row['responsibilities']); 
+            foreach ($responsibilities as $item) { echo "<li>$item</li>"; } ?>
           </ol>
         </section>
 
@@ -56,58 +75,21 @@ include(__DIR__ . "/../include/nav.inc");
           <h3>Requirements</h3>
           <h4>Essential</h4>
           <ul>
-            <li>Degree in forensic science, biomedical science, or related field</li>
-            <li>Strong written communication and attention to detail</li>
-            <li>Ability to work with confidential information</li>
+            <?php $essential = explode("|", $row['essential_requirements']);
+            foreach ($essential as $item) { echo "<li>$item</li>"; } ?>
           </ul>
           <h4>Preferable</h4>
           <ul>
-            <li>Experience with laboratory information systems</li>
-            <li>Knowledge of health department procedures</li>
+            <?php $preferable = explode("|", $row['preferable_requirements']); 
+            foreach ($preferable as $item) { echo "<li>$item</li>"; } ?>
           </ul>
         </section>
+
+        <a href="apply.php?ref=<?php echo $row['reference_no']; ?>" class="button"> Apply Now </a>
       </article>
 
-      <article class="job-card">
-        <header>
-          <h2>Public Health Research Analyst</h2>
-          <p class="job-ref">Reference: PR824</p>
-          <p class="job-meta">Salary: AUD 82,000 - 96,000 per year</p>
-          <p class="job-meta">Reports to: Research and Policy Lead</p>
-        </header>
+      <?php } ?>
 
-        <section>
-          <h3>Short Description</h3>
-          <p>
-            This role supports public health studies by analysing research data,
-            preparing summaries, and helping teams turn findings into useful recommendations.
-          </p>
-        </section>
-
-        <section>
-          <h3>Key Responsibilities</h3>
-          <ol>
-            <li>Review health datasets and prepare research summaries.</li>
-            <li>Support project planning, reporting, and evidence review.</li>
-            <li>Work with internal teams to improve service outcomes.</li>
-          </ol>
-        </section>
-
-        <section>
-          <h3>Requirements</h3>
-          <h4>Essential</h4>
-          <ul>
-            <li>Degree in public health, research, statistics, or related field</li>
-            <li>Good analytical thinking and report writing skills</li>
-            <li>Ability to organise information clearly and accurately</li>
-          </ul>
-          <h4>Preferable</h4>
-          <ul>
-            <li>Experience in health research projects</li>
-            <li>Familiarity with spreadsheet or statistical tools</li>
-          </ul>
-        </section>
-      </article>
     </section>
   </main>
 <?php include(__DIR__ . "/../include/footer.inc"); ?>
