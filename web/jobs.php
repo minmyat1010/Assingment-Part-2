@@ -8,10 +8,7 @@ $footer_text = '<a href="apply.php">Go to application form</a>';
 include(__DIR__ . "/../include/header.inc");
 include(__DIR__ . "/../include/nav.inc");
 
-$host = "localhost";
-$user = "root";
-$password = "";
-$dbname = "healthdepartment";
+require_once("../include/settings.php");
 
 $conn = mysqli_connect($host, $user, $password, $dbname);
 
